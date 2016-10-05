@@ -1,0 +1,55 @@
+﻿@import './components/page';
+@import './components/message-list';
+
+/* ------ Variables ------------------------------------------------------------------------------- */
+@cl-text: #293034;
+@cl-white: white;
+@cl-grey: #ccc; 
+@cl-lightblue: #aaaaff;
+
+/* ------ Base rules ------------------------------------------------------------------------------ */
+html {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  -webkit-font-smoothing: antialiased;
+
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  color: @cl-text;
+  background-color: @cl-white;
+}
+
+p {
+  padding: 0;
+  margin: 10px 0;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid @cl-grey;
+  background-color: @cl-white;
+}
+
+button {
+  cursor: pointer;
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: 1px solid @cl-grey;
+  background-color: @cl-white;
+  transition: 0.2s background ease-out;
+  outline: none;
+
+  &:hover {
+    background-color: @cl-lightblue;
+  }
+}
