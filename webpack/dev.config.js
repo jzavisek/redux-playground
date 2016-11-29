@@ -1,12 +1,11 @@
 const fs = require('fs')
 const path = require('path')
 const webpack = require('webpack')
-const host = 'localhost'
-const port = 3000
 const autoprefixer = require('autoprefixer')
 const HappyPack = require('happypack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const config = require('./webpack-dev-server.config')
 
 const PATHS = {
   root: path.join(__dirname, '../'),
@@ -16,7 +15,7 @@ const PATHS = {
 module.exports = {
   devtool: 'eval',
   entry: [
-    `webpack-hot-middleware/client?path=http://${host}:${port}/__webpack_hmr`,
+    `webpack-hot-middleware/client?path=http://${config.host}:${config.port}/__webpack_hmr`,
     'webpack/hot/only-dev-server',
     './app/assets/less/site.less',
     './app/entry.js'
@@ -32,11 +31,6 @@ module.exports = {
   },
   module: {
     loaders: [
-      {
-        test: /\.html$/,
-        exclude: /node_modules/,
-        loader: "file-loader"
-      },
       {
         test: /\.jsx?$/,
         exclude: /(node_modules)\/|iconfont.font.js$/,
@@ -80,15 +74,6 @@ module.exports = {
     // Cleans dist folder before build
     new CleanWebpackPlugin(['dist'], {
        root: PATHS.root,
-    }),
-
-    // Creates HTML page and injects generated bundle.js to the page
-    new HtmlWebpackPlugin({
-      title: 'React - starter',
-      filename: 'index.html',
-      inject: 'body',
-      showErrors: true,
-      template: 'app/index.ejs'
     }),
 
     // Injects newly generated changes to the page without refresh
