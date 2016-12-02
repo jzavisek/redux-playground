@@ -33,7 +33,8 @@ app.use(require('webpack-hot-middleware')(compiler))
 const allowedRoutes = ['/', '/index', '/test']
 app.get(allowedRoutes, (req, res) => {
   const assets = res.locals.webpackStats.toJson().assetsByChunkName
-  res.render('index', { assets })
+  const js = Array.isArray(assets.main) ? assets.main : [assets.main]
+  res.render('index', { js })
 })
 
 app.listen(port, err => {
