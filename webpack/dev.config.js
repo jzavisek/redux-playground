@@ -34,8 +34,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /(node_modules)\/|iconfont.font.js$/,
-        loaders: ['babel-loader'],
-        happy: { id: 'jsx' }
+        loaders: ['happypack/loader'],
       },
       {
         test: /\.less$/,
@@ -97,8 +96,8 @@ module.exports = {
 
     // Speeds up build
     new HappyPack({
-      id: 'jsx',
-      threads: 5
+      threads: 5,
+      loaders: ['babel-loader']
     })
   ]
 }
