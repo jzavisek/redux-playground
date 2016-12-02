@@ -16,7 +16,6 @@ module.exports = {
   devtool: 'eval',
   entry: [
     `webpack-hot-middleware/client?path=http://${config.host}:${config.port}/__webpack_hmr`,
-    'webpack/hot/only-dev-server',
     './app/assets/less/site.less',
     './app/entry.js'
   ],

@@ -1,15 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './components/app'
+import Root from './components/root'
 
 import { configureStore } from './redux/store'
-import { Provider } from 'react-redux'
 
-const store = configureStore()
-const Root = (
-  <Provider store={store}>
-    <App />
-  </Provider>
-)
+const store = configureStore();
 
-ReactDOM.render(Root, document.getElementById('page'))
+function renderApp(Component) {
+  ReactDOM.render(<Component store={store} />, document.getElementById('page'))
+}
+
+renderApp(Root)
+
+if(module.hot) {
+  module.hot.accept('./components/root', () => {
+    const NextRoot = require('./components/root').default
+    renderApp(NextRoot);
+  })
+}
